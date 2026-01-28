@@ -13,18 +13,18 @@
 
 ## Пример манифеста docker-compose
 ```yaml
-version: '3.8'     # Версия формата docker-compose
-services:     # Определение сервисов (контейнеров)
-  nginx:       # Имя сервиса - можно обращаться по этому имени внутри docker-compose сети
+version: '3.8'              # Версия формата docker-compose
+services:                   # Определение сервисов (контейнеров)
+  nginx:                    # Имя сервиса - можно обращаться по этому имени внутри docker-compose сети
     image: nginx:latest     # Официальный образ Nginx с тегом (версией)
-    container_name: my-nginx     # Имя контейнера для удобной идентификации
-    restart: unless-stopped      # always: всегда перезапускать, unless-stopped: если не остановлен вручную
+    container_name: my-nginx       # Имя контейнера для удобной идентификации
+    restart: unless-stopped        # always: всегда перезапускать, unless-stopped: если не остановлен вручную
     ports:
-      - "8080:80" # 8080 на хосте -> 80 в контейнере (стандартный HTTP порт Nginx)
-    volumes:     # Подключение томов (volumes)
+      - "8080:80"         # 8080 на хосте -> 80 в контейнере (стандартный HTTP порт Nginx)
+    volumes:              # Подключение томов (volumes)
       - ./nginx/conf.d:/etc/nginx/conf.d       # Локальная папка   : Путь в контейнере
-      - ./html:/usr/share/nginx/html       # Монтирование каталога со статическими файлами
-    environment:         # Переменные окружения (если нужны)
+      - ./html:/usr/share/nginx/html           # Монтирование каталога со статическими файлами
+    environment:                               # Переменные окружения (если нужны)
       - NGINX_HOST=localhost
       - NGINX_PORT=80
     working_dir: /usr/share/nginx/html          # Рабочая директория внутри контейнера
